@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'administrator@laravel.com',
             'login' => 'admin',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'admin' => true,
             'email_verified_at' => now(),
         ]);
     }
