@@ -14,8 +14,18 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        $this->login();
+
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    private function login()
+    {
+        $this->post('/login', [
+            'login' => 'admin',
+            'password' => 'password'
+        ]);
     }
 }
