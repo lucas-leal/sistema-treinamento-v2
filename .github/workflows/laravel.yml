@@ -35,3 +35,6 @@ jobs:
         DB_DATABASE: database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: php artisan test
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
