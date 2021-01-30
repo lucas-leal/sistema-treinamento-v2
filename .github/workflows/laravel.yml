@@ -29,6 +29,7 @@ jobs:
         mkdir -p database
         touch database/database.sqlite
         php artisan migrate
+        php artisan db:seed
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
