@@ -2,17 +2,24 @@
 
 namespace Tests\Unit;
 
+use App\Models\User;
 use PHPUnit\Framework\TestCase;
 
-class ExampleTest extends TestCase
+class UserTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    public function testIsAdmin()
     {
-        $this->assertTrue(true);
+        $user = new User();
+        $user->admin = true;
+
+        $this->assertTrue($user->isAdmin());
+    }
+
+    public function testIsNotAdmin()
+    {
+        $user = new User();
+        $user->admin = false;
+
+        $this->assertFalse($user->isAdmin());
     }
 }
