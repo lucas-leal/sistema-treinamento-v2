@@ -21,6 +21,22 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        return $request->all();
+        $request->validate([
+            'name' => 'required',
+            'email' => ['required', 'email', 'unique:users'],
+            'login' => ['required', 'min:6', 'unique:users'],
+            'password' => ['required', 'min:6']
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->login = $request->login;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+
+        $user->save();
+
+        return redirect('/users');
     }
 }
