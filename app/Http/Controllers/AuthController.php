@@ -20,7 +20,7 @@ class AuthController extends Controller
             return redirect('/');
         }
 
-        return back();
+        return back()->withErrors(['login' => trans('auth.failed')]);
     }
 
     public function logout()
