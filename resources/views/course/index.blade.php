@@ -1,0 +1,25 @@
+@extends('layout')
+
+@section('main')
+    <h1>Courses listing</h1>
+    <table>
+        <head>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Instructor</th>
+                <th>Keywords</th>
+            </tr>
+        </head>
+        <tbody>
+            @foreach($courses as $course)
+                <tr>
+                    <td>{{ $course->title }}</td>
+                    <td>{{ $course->category->name }}</td>
+                    <td>{{ $course->instructor }}</td>
+                    <td>{{ $course->keywords }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
