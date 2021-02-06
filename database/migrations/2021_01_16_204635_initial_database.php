@@ -20,8 +20,8 @@ class InitialDatabase extends Migration
 
         Schema::create('courses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->enum('status', ['active', 'inactive']);
-            $table->string('name');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->string('title');
             $table->string('instructor');
             $table->json('keywords');
             $table->foreignUuid('category_id')->references('id')->on('categories');
