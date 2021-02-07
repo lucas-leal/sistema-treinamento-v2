@@ -33,4 +33,4 @@ jobs:
         php artisan migrate
         php artisan db:seed
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      run: vendor/bim/phpunit
+      run: vendor/bin/phpunit
