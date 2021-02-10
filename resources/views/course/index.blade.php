@@ -2,15 +2,15 @@
 
 @section('main')
     <h1>Courses listing</h1>
-    <table>
-        <head>
+    <table class="table table-hover">
+        <thead>
             <tr>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Instructor</th>
                 <th>Keywords</th>
             </tr>
-        </head>
+        </thead>
         <tbody>
             @foreach($courses as $course)
                 <tr>

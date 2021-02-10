@@ -1,7 +1,8 @@
 @extends('layout')
 
 @section('main')
-    <table>
+    <h1>Users</h1>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Name</th>
