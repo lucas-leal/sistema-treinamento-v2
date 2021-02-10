@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-9 col-md-4 col-lg-4 offset-sm-1 offset-md-4 offset-lg-4">
             <h3 class="text-center">Login</h3>
-            <form action="login" method="post">
+            <form action="{{ route('login.authenticate') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-12">
