@@ -28,16 +28,20 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(Admin::class)->group(function () {
-        Route::get('/users', [UserController::class, 'index'])->name('users');
-        Route::get('/users/create', [UserController::class, 'create']);
-        Route::post('/users', [UserController::class, 'store']);
+        Route::prefix('users')->group(function () {
+            Route::get('', [UserController::class, 'index'])->name('users');
+            Route::get('create', [UserController::class, 'create']);
+            Route::post('', [UserController::class, 'store']);
+        });
+        
+        Route::prefix('courses')->group(function () {
+            Route::get('', [CourseController::class, 'index'])->name('courses');
 
-        Route::get('/courses/create', [CourseController::class, 'create']);
-        Route::post('/courses', [CourseController::class, 'store']);
+            Route::get('create', [CourseController::class, 'create']);
+            Route::post('', [CourseController::class, 'store']);
 
-        Route::get('/courses/{id}/units/create', [UnitController::class, 'create']);
-        Route::post('/courses/{id}/units', [UnitController::class, 'store'])->name('units.store');
+            Route::get('{id}/units/create', [UnitController::class, 'create']);
+            Route::post('{id}/units', [UnitController::class, 'store'])->name('units.store');
+        });
     });
-
-    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 });
