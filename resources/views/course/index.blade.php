@@ -10,6 +10,7 @@
                 <th>Category</th>
                 <th>Instructor</th>
                 <th>Keywords</th>
+                <th>View</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ $course->category->name }}</td>
                     <td>{{ $course->instructor }}</td>
                     <td>{{ $course->keywords }}</td>
+                    <td><a href="{{ route('courses.view', ['id' => $course->id]) }}">View</a></td>
                 </tr>
             @endforeach
         </tbody>

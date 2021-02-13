@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class CourseController extends Controller
 {
@@ -12,6 +13,17 @@ class CourseController extends Controller
     {
         $courses = Course::all();
         return view('course/index', ['courses' => $courses]);
+    }
+
+    public function view(string $id)
+    {
+        $course = Course::find($id);
+
+        if (!$course) {
+            throw new BadRequestHttpException('Course not found');
+        }
+
+        return view('course/view', ['course' => $course]);
     }
 
     public function create()
