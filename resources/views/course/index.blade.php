@@ -5,6 +5,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Instructor</th>
@@ -14,6 +15,7 @@
         <tbody>
             @foreach($courses as $course)
                 <tr>
+                    <td>{{ $course->id }}</td>
                     <td>{{ $course->title }}</td>
                     <td>{{ $course->category->name }}</td>
                     <td>{{ $course->instructor }}</td>

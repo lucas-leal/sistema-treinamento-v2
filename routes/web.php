@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/courses/create', [CourseController::class, 'create']);
         Route::post('/courses', [CourseController::class, 'store']);
+
+        Route::get('/courses/{id}/units/create', [UnitController::class, 'create']);
+        Route::post('/courses/{id}/units', [UnitController::class, 'store'])->name('units.store');
     });
 
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
