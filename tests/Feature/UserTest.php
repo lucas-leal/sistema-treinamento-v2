@@ -6,20 +6,23 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function testList()
+    use LoginTrait;
+    
+    public function testListWithAdmin()
     {
-        $this->login();
+        $this->adminLogin();
 
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
 
-    private function login()
+    public function testListWithUser()
     {
-        $this->post('/login', [
-            'login' => 'admin',
-            'password' => 'password'
-        ]);
+        $this->userLogin();
+
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 }

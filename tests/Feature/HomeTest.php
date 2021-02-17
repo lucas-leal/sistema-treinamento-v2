@@ -7,20 +7,14 @@ use Tests\TestCase;
 
 class HomeTest extends TestCase
 {
+    use LoginTrait;
+
     public function testHome()
     {
-        $this->login();
+        $this->adminLogin();
 
         $response = $this->get('/');
 
         $response->assertStatus(200);
-    }
-
-    private function login()
-    {
-        $this->post('/login', [
-            'login' => 'admin',
-            'password' => 'password'
-        ]);
     }
 }
