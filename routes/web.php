@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
             Route::get('{id}/units/create', [UnitController::class, 'create']);
             Route::post('{id}/units', [UnitController::class, 'store'])->name('units.store');
+
+            Route::get('{id}/videos/create', [VideoController::class, 'create']);
+            Route::post('{id}/videos', [VideoController::class, 'store'])->name('videos.store');
         });
     });
 });

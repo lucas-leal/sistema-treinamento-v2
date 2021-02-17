@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Video extends Model
 {
     use HasFactory, UuidTrait;
 
     public $incrementing = false;
 
-    public function course()
+    public function unit()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Unit::class);
     }
 }
