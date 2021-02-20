@@ -31,7 +31,7 @@ class InitialDatabase extends Migration
 
         Schema::create('units', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->string('title');
             $table->foreignUuid('course_id')->references('id')->on('courses');
             $table->timestamps();
         });
