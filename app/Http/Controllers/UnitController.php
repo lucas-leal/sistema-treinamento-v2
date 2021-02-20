@@ -19,13 +19,13 @@ class UnitController extends Controller
     public function store(Request $request, string $courseId)
     {
         $request->validate([
-            'name' => 'required',
+            'title' => 'required',
         ]);
 
         $course = $this->findCourse($courseId);
 
         $unit = new Unit();
-        $unit->name = $request->name;
+        $unit->title = $request->title;
         $unit->course()->associate($course);
 
         $unit->save();

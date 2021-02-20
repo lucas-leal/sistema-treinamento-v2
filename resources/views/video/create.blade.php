@@ -31,8 +31,9 @@
                     <div class="form-group col-md-6">
                         <label for="unit">Unit</label>
                         <select name="unit" id="unit" class="form-control @error('unit') is-invalid @enderror">
+                            <option value=""></option>
                             @foreach($course->units as $unit)
-                                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                <option value="{{ $unit->id }}">{{ $unit->title }}</option>
                             @endforeach
                         </select>
                         <div class="invalid-feedback">
