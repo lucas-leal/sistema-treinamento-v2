@@ -12,7 +12,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ url()->current() }}/units/create">Unit</a>
                         <a class="dropdown-item" href="{{ url()->current() }}/videos/create">Video</a>
-                        <a class="dropdown-item" href="#">File</a>
+                        <a class="dropdown-item" href="{{ url()->current() }}/files/create">File</a>
                         <a class="dropdown-item" href="#">Activity</a>
                     </div>
                 </div>

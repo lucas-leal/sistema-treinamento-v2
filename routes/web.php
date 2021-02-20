@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
 
             Route::get('{id}/videos/create', [VideoController::class, 'create']);
             Route::post('{id}/videos', [VideoController::class, 'store'])->name('videos.store');
+
+            Route::get('{id}/files/create', [FileController::class, 'create']);
+            Route::post('{id}/files', [FileController::class, 'store'])->name('files.store');
         });
     });
 });
