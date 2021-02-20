@@ -37,6 +37,7 @@ class CourseController extends Controller
         $request->validate([
             'title' => ['required'],
             'instructor' => ['required'],
+            'description' => ['required'],
             'keywords' => ['required'],
             'category' => ['required']
         ]);
@@ -44,6 +45,7 @@ class CourseController extends Controller
         $course = new Course();
 
         $course->title = $request->title;
+        $course->description = $request->description;
         $course->instructor = $request->instructor;
         $course->keywords = $request->keywords;
 

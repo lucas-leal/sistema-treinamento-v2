@@ -22,6 +22,7 @@ class InitialDatabase extends Migration
             $table->uuid('id')->primary();
             $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->string('title');
+            $table->string('description', 100);
             $table->string('instructor');
             $table->json('keywords');
             $table->foreignUuid('category_id')->references('id')->on('categories');
