@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -24,9 +25,7 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('login.auth
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::middleware(Admin::class)->group(function () {
         Route::prefix('users')->group(function () {
