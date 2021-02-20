@@ -27,19 +27,22 @@
                     <a class="nav-link" href="#">Link</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users') }}">Users</a>
+                    <a class="nav-link" href="{{ route('home') }}">All courses</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses') }}">Courses</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Courses</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">In progress</a>
+                        <a class="dropdown-item" href="#">Concluded</a>
                     </div>
-                </li> -->
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrator</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="{{ route('users') }}">Users</a>
+                        <a class="dropdown-item" href="{{ route('courses') }}">Courses</a>
+                    </div>
+                </li>
             </ul>
 
             <ul class="navbar-nav my-2 my-lg-0">
