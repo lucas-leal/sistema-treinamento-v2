@@ -2,30 +2,70 @@
 
 @section('main')
     <div class="row">
-        <div class="col-md-6">
-            <h3>{{ $course->title }}</h3>
+        <div class="col-md-12">
+            <div class="mb-3">
+                <h3 class="d-inline">{{ $course->title }}</h3>
+                <div class="btn-group float-right">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Create
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ url()->current() }}/units/create">Unit</a>
+                        <a class="dropdown-item" href="{{ url()->current() }}/videos/create">Video</a>
+                        <a class="dropdown-item" href="#">File</a>
+                        <a class="dropdown-item" href="#">Activity</a>
+                    </div>
+                </div>
+            </div>
+            <p>{{ $course->description }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Instructor</h5>
-                    <p class="card-text">{{ $course->instructor }}</p>
+                    <small>Category</small>
+                    <h5>{{ $course->category->name }}</h5>
+
+                    <small>Instructor</small>
+                    <h5>{{ $course->instructor }}</h5>
+
+                    <small>Keywords</small>
+                    <h5>{{ $course->keywords }}</h5>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-9">
             <ul class="list-group">
-                <li class="list-group-item h4">units</li>
-                @foreach ($course->units as $unit)
-                    <li class="list-group-item">{{ $unit->name }}</li>
-                @endforeach
-                <li class="list-group-item h4">
-                    <input type="text" name="" id="" class="form-control">
-                    <button class="btn btn-primary">Save</button>
-                </li>
+                <li class="list-group-item h4">Units</li>
             </ul>
+
+            <div id="accordion">
+                @foreach ($course->units as $unit)
+                    <div class="card">
+                        <div class="card-header" id="heading{{ $unit->id }}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ $unit->id }}" aria-expanded="false" aria-controls="collapse{{ $unit->id }}">
+                                {{ $unit->title }}
+                            </button>
+                        </h5>
+                        </div>
+
+                        <div id="collapse{{ $unit->id }}" class="collapse" aria-labelledby="heading{{ $unit->id }}" data-parent="#accordion">
+                            <div class="card-body">
+                                <h5>Videos</h5>
+                                <ul>
+                                    @foreach ($unit->videos as $video)
+                                        <li>
+                                            <a href="{{ $video->url }}">{{ $video->title }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
