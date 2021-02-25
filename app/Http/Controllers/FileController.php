@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\File;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -15,6 +17,22 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-        return $request->file('file')->getFilename();
+        $request->validate([
+            'unit' => 'required',
+            'file' => ['required', 'file']
+        ]);
+
+        $unit = Unit::findOrFail($request->unit);
+
+        $file = new File();
+
+        $file->title = $request->file('file')->getClientOriginalName();
+        $file->path = 'test';
+        $file->unit()->associate($unit);
+        $file->course()->associate($unit->course);
+
+        $file->save();
+
+        return $request->file('file')->storeAs('', $file->id);
     }
 }

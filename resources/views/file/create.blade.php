@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
             <h4 class="mb-3">New file</h4>
-            <form action="{{ route('files.store', ['id' => $course->id]) }}" method="post">
+            <form action="{{ route('files.store', ['id' => $course->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -25,8 +25,8 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="file" required>
-                            <label class="custom-file-label" for="file">Choose file...</label>
+                            <input type="file" name="file" class="custom-file-input" id="file" required>
+                            <label class="custom-file-label" for="file" id="file-label">Choose file...</label>
                             <div class="invalid-feedback">
                                 @error('file')
                                     {{ $message }}
@@ -40,5 +40,4 @@
             </form>
         </div>
     </div>
-
 @endsection
