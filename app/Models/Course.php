@@ -21,9 +21,4 @@ class Course extends Model
     {
         return $this->hasMany(Unit::class);
     }
-
-    public function files()
-    {
-        return $this->hasMany(File::class);
-    }
 }
