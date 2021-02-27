@@ -48,8 +48,7 @@ class InitialDatabase extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('path');
-            $table->foreignUuid('unit_id')->references('id')->on('units')->nullable(true);
-            $table->foreignUuid('course_id')->references('id')->on('courses');
+            $table->foreignUuid('unit_id')->references('id')->on('units');
             $table->timestamps();
         });
 
@@ -57,8 +56,7 @@ class InitialDatabase extends Migration
             $table->uuid('id')->primary();
             $table->enum('status', ['inactive', 'active'])->default('inactive');
             $table->string('title');
-            $table->foreignUuid('unit_id')->references('id')->on('units')->nullable(true);
-            $table->foreignUuid('course_id')->references('id')->on('courses');
+            $table->foreignUuid('unit_id')->references('id')->on('units');
             $table->timestamps();
         });
 
