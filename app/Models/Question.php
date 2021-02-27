@@ -5,21 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Activity extends Model
+class Question extends Model
 {
-    public const NUMBER_OPTIONS = 4;
-    
     use HasFactory, UuidTrait;
 
     public $incrementing = false;
 
-    public function unit()
+    public function activity()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Activity::class);
     }
     
-    public function questions()
+    public function options()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Option::class);
     }
 }

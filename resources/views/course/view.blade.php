@@ -13,7 +13,7 @@
                         <a class="dropdown-item" href="{{ url()->current() }}/units/create">Unit</a>
                         <a class="dropdown-item" href="{{ url()->current() }}/videos/create">Video</a>
                         <a class="dropdown-item" href="{{ url()->current() }}/files/create">File</a>
-                        <a class="dropdown-item" href="#">Activity</a>
+                        <a class="dropdown-item" href="{{ route('activities.create', ['id' => $course->id]) }}">Activity</a>
                     </div>
                 </div>
             </div>
