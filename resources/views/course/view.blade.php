@@ -61,6 +61,14 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <h5>Files</h5>
+                                <ul>
+                                    @foreach ($unit->files as $file)
+                                        <li>
+                                            <a href="{{ route('files.get', ['id' => $course->id, 'fileId' => $file->id]) }}">{{ $file->title }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>

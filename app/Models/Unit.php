@@ -20,4 +20,9 @@ class Unit extends Model
     {
         return $this->hasMany(Video::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }
