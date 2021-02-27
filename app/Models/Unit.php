@@ -25,4 +25,9 @@ class Unit extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

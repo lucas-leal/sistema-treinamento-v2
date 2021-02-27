@@ -69,6 +69,14 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <h5>Activities</h5>
+                                <ul>
+                                    @foreach ($unit->activities as $activity)
+                                        <li>
+                                            <a href="#">{{ $activity->title }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>
