@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
             Route::get('{id}/files/create', [FileController::class, 'create']);
             Route::post('{id}/files', [FileController::class, 'store'])->name('files.store');
+            Route::get('{id}/files/{fileId}', [FileController::class, 'get']);
         });
     });
 });
