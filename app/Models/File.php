@@ -15,9 +15,4 @@ class File extends Model
     {
         return $this->belongsTo(Unit::class);
     }
-
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
 }

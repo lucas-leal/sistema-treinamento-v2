@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Unit;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UnitController extends Controller
 {
     public function create(string $courseId)
     {
-        $course = $this->findCourse($courseId);
+        $course = Course::findOrFail($courseId);
 
         return view('unit/create', ['course' => $course]);
     }
@@ -22,23 +21,14 @@ class UnitController extends Controller
             'title' => 'required',
         ]);
 
-        $course = $this->findCourse($courseId);
+        $course = Course::findOrFail($courseId);
 
         $unit = new Unit();
         $unit->title = $request->title;
         $unit->course()->associate($course);
 
         $unit->save();
-    }
 
-    private function findCourse(string $courseId): Course
-    {
-        $course = Course::find($courseId);
-        
-        if (!$course) {
-            throw new BadRequestHttpException('Invalid course id');
-        }
-
-        return $course;
+        return redirect(route('courses.view', ['id' => $courseId]));
     }
 }

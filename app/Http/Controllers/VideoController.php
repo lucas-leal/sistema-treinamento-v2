@@ -32,5 +32,7 @@ class VideoController extends Controller
         $video->unit()->associate($unit);
 
         $video->save();
+
+        return redirect(route('courses.view', ['id' => $courseId]));
     }
 }

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    private const STORAGE_PATH = 'files';
+
     public function create(string $courseId)
     {
         $course = Course::findOrFail($courseId);
@@ -28,23 +30,23 @@ class FileController extends Controller
 
         $file = new File();
 
-        $path = 'files';
+        $path = self::STORAGE_PATH;
         $storageName = Uuid::uuid().".{$request->file('file')->extension()}";
 
         $file->title = $request->file('file')->getClientOriginalName();
         $file->path = "$path/$storageName";
         $file->unit()->associate($unit);
-        $file->course()->associate($unit->course);
 
         $file->save();
 
-        return $request->file('file')->storeAs($path, $storageName);
+        $request->file('file')->storeAs($path, $storageName);
+
+        return redirect(route('courses.view', ['id' => $unit->course->id]));
     }
 
     public function get(string $courseId, string $fileId)
     {
-        $course = Course::findOrFail($courseId);
-        $file = $course->files()->findOrFail($fileId);
+        $file = File::findOrFail($fileId);
 
         return Storage::download($file->path, $file->title);
     }
