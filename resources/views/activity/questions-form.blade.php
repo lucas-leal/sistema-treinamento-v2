@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8">
             <h4 class="mb-3">Questions</h4>
-            <form action="{{ route('activities.overview', ['id' => $course->id]) }}" method="post">
+            <form action="{{ route('activities.store', ['id' => $course->id]) }}" method="post">
                 @csrf
                 <input type="hidden" name="title" value="{{ $title }}">
                 <input type="hidden" name="unit" value="{{ $unit->id }}">

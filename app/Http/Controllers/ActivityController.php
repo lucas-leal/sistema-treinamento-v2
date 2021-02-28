@@ -6,7 +6,6 @@ use App\Models\Activity;
 use App\Models\Course;
 use App\Models\Option;
 use App\Models\Question;
-use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -36,7 +35,7 @@ class ActivityController extends Controller
         ]);
     }
 
-    public function overview(string $courseId, Request $request)
+    public function store(string $courseId, Request $request)
     {
         $request->validate([
             'title' => 'required',
@@ -50,7 +49,7 @@ class ActivityController extends Controller
 
         $this->save($course, $request);
 
-        return $request->all();
+        return redirect(route('courses.view', ['id' => $course->id]));
     }
 
     private function validateQuestions(Request $request)
@@ -99,5 +98,11 @@ class ActivityController extends Controller
 
             $questionModel->options()->saveMany($options);
         }
+    }
+
+    public function view(string $courseId, string $activityId)
+    {
+        $activity = Activity::findOrFail($activityId);
+        return view('activity/view', ['activity' => $activity]);
     }
 }

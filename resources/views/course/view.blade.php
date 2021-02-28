@@ -13,7 +13,7 @@
                         <a class="dropdown-item" href="{{ url()->current() }}/units/create">Unit</a>
                         <a class="dropdown-item" href="{{ url()->current() }}/videos/create">Video</a>
                         <a class="dropdown-item" href="{{ url()->current() }}/files/create">File</a>
-                        <a class="dropdown-item" href="{{ route('activities.create', ['id' => $course->id]) }}">Activity</a>
+                        <a class="dropdown-item" href="{{ url()->current() }}/activities/create">Activity</a>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                                     <ul>
                                         @foreach ($unit->activities as $activity)
                                             <li>
-                                                <a href="#">{{ $activity->title }}</a>
+                                                <a href="{{ route('activities.view', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
                                             </li>
                                         @endforeach
                                     </ul>

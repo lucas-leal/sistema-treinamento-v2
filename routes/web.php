@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
 
             Route::get('{id}/activities/create', [ActivityController::class, 'create'])->name('activities.create');
             Route::get('{id}/activities/next', [ActivityController::class, 'next'])->name('activities.next');
-            Route::post('{id}/activities/overview', [ActivityController::class, 'overview'])->name('activities.overview');
+            Route::post('{id}/activities', [ActivityController::class, 'store'])->name('activities.store');
+            Route::get('{id}/activities/{activityId}', [ActivityController::class, 'view'])->name('activities.view');
         });
     });
 });
