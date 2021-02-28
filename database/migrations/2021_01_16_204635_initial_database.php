@@ -74,6 +74,28 @@ class InitialDatabase extends Migration
             $table->foreignUuid('question_id')->references('id')->on('questions');
             $table->timestamps();
         });
+
+        Schema::create('registrations', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('course_id')->references('id')->on('courses');
+            $table->timestamps();
+        });
+
+        Schema::create('resolutions', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('activity_id')->references('id')->on('activities');
+            $table->timestamps();
+        });
+
+        Schema::create('answers', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('resolution_id')->references('id')->on('resolutions');
+            $table->foreignUuid('question_id')->references('id')->on('questions');
+            $table->foreignUuid('option_id')->references('id')->on('options');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -83,6 +105,9 @@ class InitialDatabase extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('answers');
+        Schema::dropIfExists('resolutions');
+        Schema::dropIfExists('registrations');
         Schema::dropIfExists('options');
         Schema::dropIfExists('questions');
         Schema::dropIfExists('activities');
