@@ -53,30 +53,37 @@
 
                         <div id="collapse{{ $unit->id }}" class="collapse" aria-labelledby="heading{{ $unit->id }}" data-parent="#accordion">
                             <div class="card-body">
-                                <h5>Videos</h5>
-                                <ul>
-                                    @foreach ($unit->videos as $video)
-                                        <li>
-                                            <a href="{{ $video->url }}">{{ $video->title }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <h5>Files</h5>
-                                <ul>
-                                    @foreach ($unit->files as $file)
-                                        <li>
-                                            <a href="{{ route('files.get', ['id' => $course->id, 'fileId' => $file->id]) }}">{{ $file->title }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <h5>Activities</h5>
-                                <ul>
-                                    @foreach ($unit->activities as $activity)
-                                        <li>
-                                            <a href="#">{{ $activity->title }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                @if ($unit->videos()->exists())
+                                    <h5>Videos</h5>
+                                    <ul>
+                                        @foreach ($unit->videos as $video)
+                                            <li>
+                                                <a href="{{ $video->url }}">{{ $video->title }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                @if ($unit->files()->exists())
+                                    <h5>Files</h5>
+                                    <ul>
+                                        @foreach ($unit->files as $file)
+                                            <li>
+                                                <a href="{{ route('files.get', ['id' => $course->id, 'fileId' => $file->id]) }}">{{ $file->title }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+
+                                @if ($unit->activities()->exists())
+                                    <h5>Activities</h5>
+                                    <ul>
+                                        @foreach ($unit->activities as $activity)
+                                            <li>
+                                                <a href="#">{{ $activity->title }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </div>
                         </div>
                     </div>
