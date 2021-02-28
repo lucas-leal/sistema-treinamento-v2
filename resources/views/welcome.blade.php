@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $course->title }}</h5>
                             <p class="card-text">{{ $course->description }}</p>
-                            <a href="#" class="btn btn-primary">Subscribe</a>
+                            <a href="{{ route('registration', ['id' => $course->id]) }}" class="btn btn-primary">Subscribe</a>
                         </div>
                     </div>
                 </div>

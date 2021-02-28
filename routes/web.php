@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -60,4 +61,6 @@ Route::middleware('auth')->group(function () {
             Route::get('{id}/activities/{activityId}', [ActivityController::class, 'view'])->name('activities.view');
         });
     });
+
+    Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
 });
