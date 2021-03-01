@@ -62,4 +62,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
     Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
+
+    Route::get('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
+    Route::post('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
 });

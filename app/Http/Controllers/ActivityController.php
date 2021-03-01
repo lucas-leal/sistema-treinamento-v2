@@ -102,7 +102,38 @@ class ActivityController extends Controller
 
     public function view(string $courseId, string $activityId)
     {
-        $activity = Activity::findOrFail($activityId);
+        $course = Course::findOrFail($courseId);
+        $activity = $course->activities()->findOrFail($activityId);
+
         return view('activity/view', ['activity' => $activity]);
+    }
+
+    public function renderResolutionForm(string $courseId, string $activityId)
+    {
+        $course = Course::findOrFail($courseId);
+        $activity = $course->activities()->findOrFail($activityId);
+
+        return view('activity/resolution', ['activity' => $activity]);
+    }
+
+    public function resolution(string $courseId, string $activityId, Request $request)
+    {
+        $course = Course::findOrFail($courseId);
+        $activity = $course->activities()->findOrFail($activityId);
+
+        $this->validateResolution($activity, $request);
+
+        return $request->all();
+    }
+
+    private function validateResolution(Activity $activity, Request $request)
+    {
+        $rules = [];
+
+        foreach ($activity->questions as $question) {
+            $rules[$question->id] = 'required';
+        }
+
+        $request->validate($rules);
     }
 }

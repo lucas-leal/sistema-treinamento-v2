@@ -26,4 +26,9 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'registrations');
     }
+
+    public function activities()
+    {
+        return $this->hasManyThrough(Activity::class, Unit::class);
+    }
 }
