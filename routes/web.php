@@ -43,8 +43,6 @@ Route::middleware('auth')->group(function () {
             Route::get('create', [CourseController::class, 'create']);
             Route::post('', [CourseController::class, 'store']);
 
-            Route::get('{id}', [CourseController::class, 'view'])->name('courses.view');
-
             Route::get('{id}/units/create', [UnitController::class, 'create']);
             Route::post('{id}/units', [UnitController::class, 'store'])->name('units.store');
 
@@ -62,5 +60,6 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
     Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
 });
