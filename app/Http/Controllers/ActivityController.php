@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Option;
 use App\Models\Question;
+use App\Models\Resolution;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
@@ -123,7 +126,25 @@ class ActivityController extends Controller
 
         $this->validateResolution($activity, $request);
 
-        return $request->all();
+        $resolution = new Resolution();
+        $resolution->user()->associate(Auth::user());
+        $resolution->activity()->associate($activity);
+        $resolution->save();
+
+        $answers = [];
+        foreach ($activity->questions as $question) {
+            $option = $question->options()->findOrFail($request->get($question->id));
+
+            $answer = new Answer();
+            $answer->question()->associate($question);
+            $answer->option()->associate($option);
+
+            $answers[] = $answer;
+        }
+
+        $resolution->answers()->saveMany($answers);
+
+        return view('activity/result', ['resolution' => $resolution]);
     }
 
     private function validateResolution(Activity $activity, Request $request)

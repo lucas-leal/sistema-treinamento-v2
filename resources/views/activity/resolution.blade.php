@@ -14,7 +14,7 @@
                     <br>
                     @foreach ($question->options as $option)
                         <div class="form-check">
-                            <input class="form-check-input @error($question->id) is-invalid @enderror" type="radio" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $option->id }}">
+                            <input class="form-check-input @error($question->id) is-invalid @enderror" type="radio" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $option->id }}" @if (old($question->id) === $option->id) checked @endif>
                             <label class="form-check-label" for="{{ $question->id }}">
                                 {{ $option->description }}
                             </label>
