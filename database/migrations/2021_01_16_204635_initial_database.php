@@ -24,7 +24,7 @@ class InitialDatabase extends Migration
             $table->string('title');
             $table->string('description', 100);
             $table->string('instructor');
-            $table->json('keywords');
+            $table->string('keywords');
             $table->foreignUuid('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
