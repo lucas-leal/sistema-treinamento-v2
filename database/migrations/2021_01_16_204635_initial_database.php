@@ -44,6 +44,13 @@ class InitialDatabase extends Migration
             $table->timestamps();
         });
 
+        Schema::create('views', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('video_id')->references('id')->on('videos');
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
+
         Schema::create('files', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
@@ -122,6 +129,7 @@ class InitialDatabase extends Migration
         Schema::dropIfExists('questions');
         Schema::dropIfExists('activities');
         Schema::dropIfExists('files');
+        Schema::dropIfExists('views');
         Schema::dropIfExists('videos');
         Schema::dropIfExists('units');
         Schema::dropIfExists('courses');
