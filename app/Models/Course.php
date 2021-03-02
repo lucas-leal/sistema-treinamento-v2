@@ -31,4 +31,9 @@ class Course extends Model
     {
         return $this->hasManyThrough(Activity::class, Unit::class);
     }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }

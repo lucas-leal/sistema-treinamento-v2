@@ -96,6 +96,15 @@ class InitialDatabase extends Migration
             $table->foreignUuid('option_id')->references('id')->on('options');
             $table->timestamps();
         });
+
+        Schema::create('evaluations', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->integer('score');
+            $table->string('comment');
+            $table->foreignUuid('user_id')->references('id')->on('users');
+            $table->foreignUuid('course_id')->references('id')->on('courses');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -105,6 +114,7 @@ class InitialDatabase extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('evaluations');
         Schema::dropIfExists('answers');
         Schema::dropIfExists('resolutions');
         Schema::dropIfExists('registrations');
