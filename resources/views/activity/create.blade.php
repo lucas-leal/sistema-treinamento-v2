@@ -3,12 +3,12 @@
 @section('main')
     <div class="row">
         <div class="col-md-8">
-            <h4 class="mb-3">New activity</h4>
+            <h4 class="mb-3">{{ __('New activity') }}</h4>
             <form action="{{ route('activities.next', ['id' => $course->id]) }}" method="get">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="title">Title</label>
+                        <label for="title">{{ __('Title') }}</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('title')
@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="questions">Number of questions</label>
+                        <label for="questions">{{ __('Number of questions') }}</label>
                         <input type="number" name="questions" id="questions" value="{{ old('questions') }}" class="form-control @error('questions') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('questions')
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="unit">Unit</label>
+                        <label for="unit">{{ __('Unit') }}</label>
                         <select name="unit" id="unit" class="form-control @error('unit') is-invalid @enderror">
                             <option value=""></option>
                             @foreach($course->units as $unit)
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Next</button>
+                <button type="submit" class="btn btn-primary">{{ __('Next') }}</button>
             </form>
         </div>
     </div>

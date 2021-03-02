@@ -3,12 +3,12 @@
 @section('main')
     <div class="row">
         <div class="col-md-8">
-            <h4 class="mb-3">New user</h4>
+            <h4 class="mb-3">{{ __('New user') }}</h4>
             <form action="/users" method="post">
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="name">Name</label>
+                        <label for="name">{{ __('Name') }}</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('name')
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="email">Email</label>
+                        <label for="email">{{ __('Email') }}</label>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('email')
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="login">Login</label>
+                        <label for="login">{{ __('Login') }}</label>
                         <input type="text" name="login" id="login" value="{{ old('login') }}" class="form-control @error('login') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('login')
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="password">Password</label>
+                        <label for="password">{{ __('Password') }}</label>
                         <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('password')
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
             </form>
         </div>
     </div>

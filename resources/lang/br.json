@@ -18,7 +18,7 @@
     "New course": "Novo curso",
     "New file": "Novo arquivo",
     "New unit": "Nova unidade",
-    "New video": "Nova vídeo",
+    "New video": "Novo vídeo",
     "Unit": "Unidade",
     "Video": "Vídeo",
     "Activity": "Atividade",
@@ -35,5 +35,13 @@
     "Activities": "Atividades",
     "Subscribe": "Inscrever",
     "Title": "Título",
-    "View": "Visualizar"
+    "View": "Visualizar",
+    "Description": "Descrição",
+    "Choose file": "Escolha o arquivo",
+    "Next": "Próximo",
+    "Number of questions": "Número de questões",
+    "Finalize": "Finalizar",
+    "Option": "Alternativa",
+    "Question": "Questão",
+    "Questions": "Questões"
 }

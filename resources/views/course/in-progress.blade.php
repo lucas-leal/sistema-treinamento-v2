@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="starter-template">
-        <h2 class="">In progress</h2>
+        <h2 class="">{{ __('In progress') }}</h2>
 
         <div class="row">
             @foreach ($courses as $course)
@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $course->title }}</h5>
                             <p class="card-text">{{ $course->description }}</p>
-                            <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">Enter</a>
+                            <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Enter') }}</a>
                         </div>
                     </div>
                 </div>
