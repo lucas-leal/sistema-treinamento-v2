@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="starter-template">
-        <h2 class="">{{ __('All courses') }}</h2>
+        <h2 class="">Concluded</h2>
 
         <div class="row">
             @foreach ($courses as $course)
@@ -11,12 +11,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $course->title }}</h5>
                             <p class="card-text">{{ $course->description }}</p>
-                            @auth('admin')
-                                <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Enter') }}</a>
-                            @endauth
-                            @guest('admin')
-                                <a href="{{ route('registration', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Subscribe') }}</a>
-                            @endguest
+                            <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">Enter</a>
                         </div>
                     </div>
                 </div>

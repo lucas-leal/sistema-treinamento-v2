@@ -3,7 +3,7 @@
 @section('main')
     <div class="row">
         <div class="col-md-8">
-            <h4 class="mb-3">Register user</h4>
+            <h4 class="mb-3">New user</h4>
             <form action="/users" method="post">
                 @csrf
                 <div class="row">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

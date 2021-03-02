@@ -14,10 +14,6 @@ class RegistrationController extends Controller
         $course = Course::findOrFail($courseId);
         $user = $request->user();
 
-        if ($user->isAdmin()) {
-            throw new BadRequestHttpException('User is admin');
-        }
-
         if ($user->alreadyRegistered($course)) {
             throw new BadRequestHttpException('Already resgistered');
         }

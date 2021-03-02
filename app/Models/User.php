@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class, 'registrations');
     }
 
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+
     public function alreadyRegistered(Course $course): bool
     {
         return !!$this->courses()->find($course->id);

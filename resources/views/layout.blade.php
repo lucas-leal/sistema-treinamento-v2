@@ -20,31 +20,31 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">All courses</a>
+                    <a class="nav-link" href="{{ route('home') }}">{{ __('All courses') }}</a>
                 </li>
                 
                 @auth('admin')
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses') }}">Courses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users') }}">Users</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('courses') }}">{{ __('Courses') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users') }}">{{ __('Users') }}</a>
+                    </li>
                 @endauth
                 @guest('admin')
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Courses</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">In progress</a>
-                        <a class="dropdown-item" href="#">Concluded</a>
-                    </div>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ __('My Courses') }}</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{{ route('courses.in-progress') }}">{{ __('In progress') }}</a>
+                            <a class="dropdown-item" href="{{ route('courses.concluded') }}">{{ __('Concluded') }}</a>
+                        </div>
+                    </li>
                 @endguest
             </ul>
 
             <ul class="navbar-nav my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                    <a class="nav-link" href="{{ route('logout') }}">{{ __('Logout') }}</a>
                 </li>
             </ul>
         </div>

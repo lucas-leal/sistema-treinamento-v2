@@ -10,6 +10,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,9 +61,15 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
-    Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
+    Route::middleware(User::class)->group(function () {
+        Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
 
-    Route::get('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
-    Route::post('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
+        Route::get('courses/in-progress', [CourseController::class, 'inProgress'])->name('courses.in-progress');
+        Route::get('courses/concluded', [CourseController::class, 'concluded'])->name('courses.concluded');
+
+        Route::get('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
+        Route::post('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
+    });
+
+    Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
 });

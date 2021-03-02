@@ -4,16 +4,16 @@
     <div class="row">
         <div class="col-md-8">
             <div class="mb-3">
-                <h3 class="d-inline">Users</h3>
-                <a href="/users/create" class="btn btn-primary float-right">New</a>
+                <h3 class="d-inline">{{ __('Users') }}</h3>
+                <a href="/users/create" class="btn btn-primary float-right">{{ __('New') }}</a>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Login</th>
+                        <th>{{ __('Id') }}</th>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Email') }}</th>
+                        <th>{{ __('Login') }}</th>
                     </tr>
                 </thead>
                 <tbody>

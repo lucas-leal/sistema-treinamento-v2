@@ -5,17 +5,19 @@
         <div class="col-md-12">
             <div class="mb-3">
                 <h3 class="d-inline">{{ $course->title }}</h3>
-                <div class="btn-group float-right">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Create
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url()->current() }}/units/create">Unit</a>
-                        <a class="dropdown-item" href="{{ url()->current() }}/videos/create">Video</a>
-                        <a class="dropdown-item" href="{{ url()->current() }}/files/create">File</a>
-                        <a class="dropdown-item" href="{{ url()->current() }}/activities/create">Activity</a>
+                @auth('admin')
+                    <div class="btn-group float-right">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ __('Add') }}
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url()->current() }}/units/create">{{ __('Unit') }}</a>
+                            <a class="dropdown-item" href="{{ url()->current() }}/videos/create">{{ __('Video') }}</a>
+                            <a class="dropdown-item" href="{{ url()->current() }}/files/create">{{ __('File') }}</a>
+                            <a class="dropdown-item" href="{{ url()->current() }}/activities/create">{{ __('Activity') }}</a>
+                        </div>
                     </div>
-                </div>
+                @endauth
             </div>
             <p>{{ $course->description }}</p>
         </div>
@@ -24,20 +26,20 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <small>Category</small>
+                    <small>{{ __('Category') }}</small>
                     <h5>{{ $course->category->name }}</h5>
 
-                    <small>Instructor</small>
+                    <small>{{ __('Instructor') }}</small>
                     <h5>{{ $course->instructor }}</h5>
 
-                    <small>Keywords</small>
+                    <small>{{ __('Keywords') }}</small>
                     <h5>{{ $course->keywords }}</h5>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
             <ul class="list-group">
-                <li class="list-group-item h4">Units</li>
+                <li class="list-group-item h4">{{ __('Units') }}</li>
             </ul>
 
             <div id="accordion">
@@ -54,7 +56,7 @@
                         <div id="collapse{{ $unit->id }}" class="collapse" aria-labelledby="heading{{ $unit->id }}" data-parent="#accordion">
                             <div class="card-body">
                                 @if ($unit->videos()->exists())
-                                    <h5>Videos</h5>
+                                    <h5>{{ __('Videos') }}</h5>
                                     <ul>
                                         @foreach ($unit->videos as $video)
                                             <li>
@@ -64,7 +66,7 @@
                                     </ul>
                                 @endif
                                 @if ($unit->files()->exists())
-                                    <h5>Files</h5>
+                                    <h5>{{ __('Files') }}</h5>
                                     <ul>
                                         @foreach ($unit->files as $file)
                                             <li>
@@ -75,7 +77,7 @@
                                 @endif
 
                                 @if ($unit->activities()->exists())
-                                    <h5>Activities</h5>
+                                    <h5>{{ __('Activities') }}</h5>
                                     <ul>
                                         @foreach ($unit->activities as $activity)
                                             <li>

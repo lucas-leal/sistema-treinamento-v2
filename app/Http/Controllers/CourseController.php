@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class CourseController extends Controller
 {
@@ -17,12 +16,7 @@ class CourseController extends Controller
 
     public function view(string $id)
     {
-        $course = Course::find($id);
-
-        if (!$course) {
-            throw new BadRequestHttpException('Course not found');
-        }
-
+        $course = Course::findOrFail($id);
         return view('course/view', ['course' => $course]);
     }
 
@@ -55,5 +49,21 @@ class CourseController extends Controller
         $course->save();
 
         return redirect('/courses');
+    }
+
+    public function inProgress(Request $request)
+    {
+        $user = $request->user();
+        $courses = $user->courses;
+
+        return view('course/in-progress', ['courses' => $courses]);
+    }
+
+    public function concluded(Request $request)
+    {
+        $user = $request->user();
+        $courses = $user->courses;
+
+        return view('course/concluded', ['courses' => $courses]);
     }
 }

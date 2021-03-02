@@ -19,13 +19,13 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="login">Login</label>
+                        <label for="login">{{ __('Login') }}</label>
                         <input type="text" name="login" id="login" class="form-control @error('login') is-invalid @enderror">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label for="password">Password</label>
+                        <label for="password">{{ __('Password') }}</label>
                         <input type="password" name="password" id="password" class="form-control @error('login') is-invalid @enderror">
                         <div class="invalid-feedback">
                             @error('login')
@@ -38,7 +38,7 @@
                 <br>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Enter') }}</button>
                 </div>
                 
             </form>
