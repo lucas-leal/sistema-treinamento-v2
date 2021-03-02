@@ -20,4 +20,14 @@ class Registration extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function isConcluded(): bool
+    {
+        return false;
+    }
+
+    public function calculateScore(): float
+    {
+        return 0;
+    }
 }

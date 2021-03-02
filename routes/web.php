@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
@@ -69,6 +70,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
         Route::post('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
+
+        Route::get('courses/{id}/evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
+        Route::post('courses/{id}/evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
     });
 
     Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
