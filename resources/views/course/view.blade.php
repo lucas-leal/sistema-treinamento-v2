@@ -81,7 +81,12 @@
                                     <ul>
                                         @foreach ($unit->activities as $activity)
                                             <li>
-                                                <a href="{{ route('activities.view', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
+                                                @auth('admin')
+                                                    <a href="{{ route('activities.view', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
+                                                @endauth
+                                                @guest('admin')
+                                                    <a href="{{ route('resolution.create', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
+                                                @endguest
                                             </li>
                                         @endforeach
                                     </ul>

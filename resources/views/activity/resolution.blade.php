@@ -23,7 +23,7 @@
                     <br>
                 @endforeach
                 
-                <button type="submit" class="btn btn-primary">Finalize</button>
+                <button type="submit" class="btn btn-primary">{{ __('Finalize') }}</button>
             </form>
         </div>
     </div>
