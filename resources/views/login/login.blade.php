@@ -12,7 +12,9 @@
 <body>
     <div class="row">
         <div class="col-sm-9 col-md-4 col-lg-4 offset-sm-1 offset-md-4 offset-lg-4">
-            <h3 class="text-center">Login</h3>
+            <br><br>
+            <h3 class="text-center">Sistema de Treinamento</h3>
+            <br>
             <form action="{{ route('login.authenticate') }}" method="post">
                 @csrf
                 <div class="row">
