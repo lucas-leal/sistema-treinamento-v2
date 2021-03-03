@@ -21,7 +21,7 @@ class CourseSeeder extends Seeder
             'id' => Uuid::uuid(),
             'title' => 'Design Patterns',
             'description' => 'Em Engenharia de Software, um padrão de desenho ou padrão de projeto é uma solução geral para um problema que ocorre com frequência dentro de um determinado contexto no projeto de software.',
-            'instructor' => 'Uncle Bob',
+            'instructor' => 'Fulano',
             'keywords' => 'Software, Design, Patterns, Programming',
             'category_id' => $category->id
         ]);
