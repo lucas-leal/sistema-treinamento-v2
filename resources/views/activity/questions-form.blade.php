@@ -22,7 +22,7 @@
                         @for ($option = 1; $option <= Activity::NUMBER_OPTIONS; $option++)
                             <div class="form-group col-md-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="correct-option-{{$question}}" id="correct-option-{{$question}}" value="option-{{$question}}-{{$option}}">
+                                    <input class="form-check-input" type="radio" name="correct-option-{{$question}}" id="correct-option-{{$question}}" value="option-{{$question}}-{{$option}}" @if (old('correct-option-'.$question) === 'option-'.$question.'-'.$option) checked @endif>
                                 </div>
                             </div>
                             <div class="form-group col-md-11">
