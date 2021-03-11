@@ -53,17 +53,29 @@ class CourseController extends Controller
 
     public function inProgress(Request $request)
     {
-        $user = $request->user();
-        $courses = $user->courses;
+        $registrations = $request->user()->registrations;
 
-        return view('course/in-progress', ['courses' => $courses]);
+        $inProgress = [];
+        foreach ($registrations as $registration) {
+            if ($registration->isInProgress()) {
+                $inProgress[] = $registration->course;
+            }
+        }
+
+        return view('course/in-progress', ['courses' => $inProgress]);
     }
 
     public function concluded(Request $request)
     {
-        $user = $request->user();
-        $courses = $user->courses;
+        $registrations = $request->user()->registrations;
 
-        return view('course/concluded', ['courses' => $courses]);
+        $concluded = [];
+        foreach ($registrations as $registration) {
+            if ($registration->isConcluded()) {
+                $concluded[] = $registration->course;
+            }
+        }
+
+        return view('course/concluded', ['courses' => $concluded]);
     }
 }

@@ -86,6 +86,7 @@
                                                 @endauth
                                                 @guest('admin')
                                                     <a href="{{ route('resolution.create', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
+                                                    <span class="float-right">{{ Auth::user()->findLastResolutionByActivity($activity)->calculateScore() }} %</span>
                                                 @endguest
                                             </li>
                                         @endforeach

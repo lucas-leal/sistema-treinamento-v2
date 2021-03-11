@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,8 +60,43 @@ class User extends Authenticatable
         return $this->hasMany(Registration::class);
     }
 
+    public function resolutions()
+    {
+        return $this->hasMany(Resolution::class);
+    }
+
     public function alreadyRegistered(Course $course): bool
     {
         return !!$this->courses()->find($course->id);
+    }
+
+    public function findResolutionsByCourse(Course $course): array
+    {
+        $resolutions = [];
+        $activities = $course->activities;
+
+        foreach ($activities as $activity) {
+            $resolutions[] = $this->findLastResolutionByActivity($activity);
+        }
+        
+        return $resolutions;
+    }
+
+    public function findLastResolutionByActivity(Activity $activity): ResolutionInterface
+    {
+        $resolution = $this
+            ->resolutions()
+            ->whereHas('activity', function (Builder $query) use ($activity) {
+                $query->where('id', $activity->id);
+            })
+            ->get()
+            ->last()
+        ;
+
+        if (!$resolution) {
+            return new NullResolution();
+        }
+
+        return $resolution;
     }
 }
