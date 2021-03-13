@@ -42,6 +42,6 @@ class Registration extends Model
             $score += $resolution->calculateScore();
         }
 
-        return round($score / count($resolutions), 2);
+        return round($score / (count($resolutions) ?: 1), 2);
     }
 }
