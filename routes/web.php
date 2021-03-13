@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('courses/{id}/evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
         Route::post('courses/{id}/evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
+
+        Route::post('courses/{id}/videos/{videoId}/view', [VideoController::class, 'view'])->name('videos.view');
     });
 
     Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');

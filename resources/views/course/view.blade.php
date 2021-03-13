@@ -119,5 +119,6 @@
                 </div>
             </div>
         </div>
+        @csrf
     </div>
 @endsection

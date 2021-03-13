@@ -19,3 +19,10 @@ $('.video-link').on('click', function () {
 $('#video-modal button').on('click', function () {
     $('#video-modal video').get(0).pause();
 });
+
+$('#video-modal video').on('play', function () {
+    let token = jQuery('#video-modal input[name=_token]').val();
+    let url = jQuery(this).attr('src');
+    
+    $.post(url + '/view', {_token: token});
+});

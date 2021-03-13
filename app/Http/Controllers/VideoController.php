@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Video;
+use App\Models\View;
 use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,5 +51,16 @@ class VideoController extends Controller
         $video = Video::findOrFail($videoId);
 
         return Storage::get($video->path);
+    }
+
+    public function view(Request $request, string $courseId, string $videoId)
+    {
+        $course = Course::findOrFail($courseId);
+        $video = $course->videos()->findOrFail($videoId);
+
+        $view = new View();
+        $view->video()->associate($video);
+        $view->user()->associate($request->user());
+        $view->save();
     }
 }
