@@ -39,7 +39,7 @@ class InitialDatabase extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('title');
-            $table->string('url');
+            $table->string('path');
             $table->foreignUuid('unit_id')->references('id')->on('units');
             $table->timestamps();
         });

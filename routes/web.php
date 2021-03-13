@@ -53,7 +53,6 @@ Route::middleware('auth')->group(function () {
 
             Route::get('{id}/files/create', [FileController::class, 'create']);
             Route::post('{id}/files', [FileController::class, 'store'])->name('files.store');
-            Route::get('{id}/files/{fileId}', [FileController::class, 'get'])->name('files.get');
 
             Route::get('{id}/activities/create', [ActivityController::class, 'create'])->name('activities.create');
             Route::get('{id}/activities/next', [ActivityController::class, 'next'])->name('activities.next');
@@ -76,4 +75,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
+    Route::get('/courses/{id}/files/{fileId}', [FileController::class, 'get'])->name('files.get');
+    Route::get('/courses/{id}/videos/{videoId}', [VideoController::class, 'get'])->name('videos.get');
 });

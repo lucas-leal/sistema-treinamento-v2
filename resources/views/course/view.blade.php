@@ -60,7 +60,7 @@
                                     <ul>
                                         @foreach ($unit->videos as $video)
                                             <li>
-                                                <a href="{{ $video->url }}">{{ $video->title }}</a>
+                                                <a href="#" url="{{ route('videos.get', ['id' => $course->id, 'videoId' => $video->id]) }}" video-title="{{ $video->title }}" class="video-link">{{ $video->title }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -85,8 +85,15 @@
                                                     <a href="{{ route('activities.view', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
                                                 @endauth
                                                 @guest('admin')
+                                                    @php
+                                                        $resolution = Auth::user()->findLastResolutionByActivity($activity)
+                                                    @endphp
+
                                                     <a href="{{ route('resolution.create', ['id' => $course->id, 'activityId' => $activity->id]) }}">{{ $activity->title }}</a>
-                                                    <span class="float-right">{{ Auth::user()->findLastResolutionByActivity($activity)->calculateScore() }} %</span>
+
+                                                    @if ($resolution->isValid())
+                                                        <span class="float-right badge @if ($resolution->isPassed()) badge-success @else badge-secondary @endif">{{ $resolution->calculateScore() }} %</span>
+                                                    @endif
                                                 @endguest
                                             </li>
                                         @endforeach
@@ -96,6 +103,20 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </div>
+
+    <div id="video-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <video width="100%" src="" controls></video>
+                </div>
             </div>
         </div>
     </div>

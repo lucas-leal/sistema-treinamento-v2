@@ -38,4 +38,14 @@ class Resolution extends Model implements ResolutionInterface
 
         return round($score, 2);
     }
+
+    public function isPassed(): bool
+    {
+        return $this->calculateScore() >= Registration::AVERAGE_SCORE_TO_PASS;
+    }
+
+    public function isValid(): bool
+    {
+        return true;
+    }
 }

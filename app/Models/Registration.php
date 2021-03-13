@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
 {
-    private const AVERAGE_SCORE_TO_PASS = 70;
+    public const AVERAGE_SCORE_TO_PASS = 70;
 
     use HasFactory, UuidTrait;
 

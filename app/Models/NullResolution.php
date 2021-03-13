@@ -8,4 +8,14 @@ class NullResolution implements ResolutionInterface
     {
         return 0;
     }
+
+    public function isPassed(): bool
+    {
+        return false;
+    }
+    
+    public function isValid(): bool
+    {
+        return false;
+    }
 }
