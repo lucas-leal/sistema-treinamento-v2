@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasMany(Resolution::class);
     }
 
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
     public function alreadyRegistered(Course $course): bool
     {
         return !!$this->courses()->find($course->id);
@@ -100,9 +105,19 @@ class User extends Authenticatable
         return $resolution;
     }
 
-    public function isRegisteredOnCourse(Course $course)
+    public function isRegisteredOnCourse(Course $course): bool
     {
-        $course = $this->courses()->find($course->id);
-        return !!$course;
+        return !!$this->courses()->find($course->id);
+    }
+
+    public function doesViewVideo(Video $video): bool
+    {
+        foreach ($this->views as $view) {
+            if ($view->video->id == $video->id) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

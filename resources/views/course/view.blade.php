@@ -61,6 +61,9 @@
                                         @foreach ($unit->videos as $video)
                                             <li>
                                                 <a href="#" url="{{ route('videos.get', ['id' => $course->id, 'videoId' => $video->id]) }}" video-title="{{ $video->title }}" class="video-link">{{ $video->title }}</a>
+                                                @if (Auth::user()->doesViewVideo($video))
+                                                    <span class="float-right badge badge-light">{{ __('viewed') }}</span>
+                                                @endif
                                             </li>
                                         @endforeach
                                     </ul>

@@ -25,7 +25,11 @@ class Registration extends Model
 
     public function isConcluded(): bool
     {
-        return $this->calculateScore() >= self::AVERAGE_SCORE_TO_PASS;
+        if ($this->calculateScore() < self::AVERAGE_SCORE_TO_PASS) {
+            return false;
+        }
+
+        return $this->isAllVideosWatched();
     }
 
     public function isInProgress(): bool
@@ -43,5 +47,20 @@ class Registration extends Model
         }
 
         return round($score / (count($resolutions) ?: 1), 2);
+    }
+
+    public function isAllVideosWatched(): bool
+    {
+        $videos = $this->course->videos;
+
+        foreach ($videos as $video) {
+            if ($this->user->doesViewVideo($video)) {
+                continue;
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }
