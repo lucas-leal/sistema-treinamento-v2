@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="starter-template">
-        <h2 class="">{{ __('All courses') }}</h2>
+        <h2>{{ __('All courses') }}</h2>
 
         <div class="row">
             @foreach ($courses as $course)
@@ -15,7 +15,11 @@
                                 <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Enter') }}</a>
                             @endauth
                             @guest('admin')
-                                <a href="{{ route('registration', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Subscribe') }}</a>
+                                @if (Auth::user()->isRegisteredOnCourse($course))
+                                    <a href="{{ route('courses.view', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Enter') }}</a>
+                                @else
+                                    <a href="{{ route('registration', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Subscribe') }}</a>
+                                @endif
                             @endguest
                         </div>
                     </div>

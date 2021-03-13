@@ -99,4 +99,10 @@ class User extends Authenticatable
 
         return $resolution;
     }
+
+    public function isRegisteredOnCourse(Course $course)
+    {
+        $course = $this->courses()->find($course->id);
+        return !!$course;
+    }
 }
