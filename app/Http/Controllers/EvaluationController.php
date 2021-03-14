@@ -26,8 +26,8 @@ class EvaluationController extends Controller
         $user = Auth::user();
 
         $evaluation = new Evaluation();
-        $evaluation->score = '';
-        $evaluation->comment = '';
+        $evaluation->score = $request->score;
+        $evaluation->comment = $request->comment;
         $evaluation->course()->associate($course);
         $evaluation->user()->associate($user);
         $evaluation->save();

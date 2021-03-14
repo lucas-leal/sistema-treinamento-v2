@@ -5,8 +5,8 @@
         <div class="col-md-12">
             <div class="mb-3">
                 <h3 class="d-inline">{{ $course->title }}</h3>
-                @auth('admin')
-                    <div class="btn-group float-right">
+                <div class="btn-group float-right">
+                    @auth('admin')
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ __('Add') }}
                         </button>
@@ -16,8 +16,12 @@
                             <a class="dropdown-item" href="{{ url()->current() }}/files/create">{{ __('File') }}</a>
                             <a class="dropdown-item" href="{{ url()->current() }}/activities/create">{{ __('Activity') }}</a>
                         </div>
-                    </div>
-                @endauth
+                    @endauth
+
+                    @guest('admin')
+                        <a href="{{ route('evaluations.create', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Evaluate course') }}</a>
+                    @endguest
+                </div>
             </div>
             <p>{{ $course->description }}</p>
         </div>
@@ -34,6 +38,18 @@
 
                     <small>{{ __('Keywords') }}</small>
                     <h5>{{ $course->keywords }}</h5>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ __('Last evaluations') }}</h5>
+                    @foreach ($evaluations as $evaluation)
+                        <small><b>{{ __('Score') }}: {{ $evaluation->score }}</b></small>
+                        <br>
+                        <small>{{ $evaluation->comment }}</small>
+                        <br><br>
+                    @endforeach
                 </div>
             </div>
         </div>

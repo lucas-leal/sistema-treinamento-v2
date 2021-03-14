@@ -17,7 +17,12 @@ class CourseController extends Controller
     public function view(string $id)
     {
         $course = Course::findOrFail($id);
-        return view('course/view', ['course' => $course]);
+        $evaluations = $course->evaluations()->limit(3)->get();
+
+        return view('course/view', [
+            'course' => $course,
+            'evaluations' => $evaluations
+        ]);
     }
 
     public function create()
