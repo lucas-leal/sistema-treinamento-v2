@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="mb-3">
                 <h3 class="d-inline">{{ __('Users') }}</h3>
                 <a href="/users/create" class="btn btn-primary float-right">{{ __('New') }}</a>
@@ -14,6 +14,7 @@
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Email') }}</th>
                         <th>{{ __('Login') }}</th>
+                        <th>{{ __('Report') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +24,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->login }}</td>
+                        <td>
+                            <a href="{{ route('user.report', ['id' => $user->id]) }}">{{ __('Report') }}</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

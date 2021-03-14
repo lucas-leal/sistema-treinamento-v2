@@ -120,4 +120,16 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function countViewedVideosByCourse(Course $course): int
+    {
+        $viewed = 0;
+        foreach ($course->videos as $video) {
+            if ($this->doesViewVideo($video)) {
+                $viewed++;
+            }
+        }
+
+        return $viewed;
+    }
 }

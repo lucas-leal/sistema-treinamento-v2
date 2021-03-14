@@ -39,4 +39,10 @@ class UserController extends Controller
 
         return redirect('/users');
     }
+
+    public function report(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('user/report', ['user' => $user]);
+    }
 }

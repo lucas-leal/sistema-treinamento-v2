@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
             Route::get('', [UserController::class, 'index'])->name('users');
             Route::get('create', [UserController::class, 'create']);
             Route::post('', [UserController::class, 'store']);
+            Route::get('{id}/report', [UserController::class, 'report'])->name('user.report');
         });
         
         Route::prefix('courses')->group(function () {
