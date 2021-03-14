@@ -46,38 +46,46 @@ Route::middleware('auth')->group(function () {
             Route::get('create', [CourseController::class, 'create']);
             Route::post('', [CourseController::class, 'store']);
 
-            Route::get('{id}/units/create', [UnitController::class, 'create']);
-            Route::post('{id}/units', [UnitController::class, 'store'])->name('units.store');
+            Route::prefix('{id}')->group(function () {
+                Route::get('units/create', [UnitController::class, 'create']);
+                Route::post('units', [UnitController::class, 'store'])->name('units.store');
 
-            Route::get('{id}/videos/create', [VideoController::class, 'create']);
-            Route::post('{id}/videos', [VideoController::class, 'store'])->name('videos.store');
+                Route::get('videos/create', [VideoController::class, 'create']);
+                Route::post('videos', [VideoController::class, 'store'])->name('videos.store');
 
-            Route::get('{id}/files/create', [FileController::class, 'create']);
-            Route::post('{id}/files', [FileController::class, 'store'])->name('files.store');
+                Route::get('files/create', [FileController::class, 'create']);
+                Route::post('files', [FileController::class, 'store'])->name('files.store');
 
-            Route::get('{id}/activities/create', [ActivityController::class, 'create'])->name('activities.create');
-            Route::get('{id}/activities/next', [ActivityController::class, 'next'])->name('activities.next');
-            Route::post('{id}/activities', [ActivityController::class, 'store'])->name('activities.store');
-            Route::get('{id}/activities/{activityId}', [ActivityController::class, 'view'])->name('activities.view');
+                Route::get('activities/create', [ActivityController::class, 'create'])->name('activities.create');
+                Route::get('activities/next', [ActivityController::class, 'next'])->name('activities.next');
+                Route::post('activities', [ActivityController::class, 'store'])->name('activities.store');
+                Route::get('activities/{activityId}', [ActivityController::class, 'view'])->name('activities.view');
+            });
         });
     });
 
-    Route::middleware(User::class)->group(function () {
-        Route::get('courses/{id}/subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
+    Route::prefix('courses')->group(function () {
+        Route::middleware(User::class)->group(function () {
+            Route::get('in-progress', [CourseController::class, 'inProgress'])->name('courses.in-progress');
+            Route::get('concluded', [CourseController::class, 'concluded'])->name('courses.concluded');
 
-        Route::get('courses/in-progress', [CourseController::class, 'inProgress'])->name('courses.in-progress');
-        Route::get('courses/concluded', [CourseController::class, 'concluded'])->name('courses.concluded');
+            Route::prefix('{id}')->group(function () {
+                Route::get('subscribe', [RegistrationController::class, 'subscribe'])->name('registration');
 
-        Route::get('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
-        Route::post('courses/{id}/activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
+                Route::get('activities/{activityId}/resolution', [ActivityController::class, 'renderResolutionForm'])->name('resolution.create');
+                Route::post('activities/{activityId}/resolution', [ActivityController::class, 'resolution'])->name('resolution.store');
+        
+                Route::get('evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
+                Route::post('evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
+        
+                Route::post('videos/{videoId}/view', [VideoController::class, 'view'])->name('videos.view');
+            });
+        });
 
-        Route::get('courses/{id}/evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
-        Route::post('courses/{id}/evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
-
-        Route::post('courses/{id}/videos/{videoId}/view', [VideoController::class, 'view'])->name('videos.view');
+        Route::prefix('{id}')->group(function () {
+            Route::get('', [CourseController::class, 'view'])->name('courses.view');
+            Route::get('files/{fileId}', [FileController::class, 'get'])->name('files.get');
+            Route::get('videos/{videoId}', [VideoController::class, 'get'])->name('videos.get');
+        });
     });
-
-    Route::get('courses/{id}', [CourseController::class, 'view'])->name('courses.view');
-    Route::get('/courses/{id}/files/{fileId}', [FileController::class, 'get'])->name('files.get');
-    Route::get('/courses/{id}/videos/{videoId}', [VideoController::class, 'get'])->name('videos.get');
 });
