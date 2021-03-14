@@ -19,6 +19,10 @@
                     @endauth
 
                     @guest('admin')
+                        @if ($registration->isConcluded())
+                            <a href="{{ route('certificate', ['id' => $course->id]) }}" class="btn btn-success">{{ __('Issue certificate') }}</a>
+                        @endif
+                        &nbsp;&nbsp;
                         <a href="{{ route('evaluations.create', ['id' => $course->id]) }}" class="btn btn-primary">{{ __('Evaluate course') }}</a>
                     @endguest
                 </div>

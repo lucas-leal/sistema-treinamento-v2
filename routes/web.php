@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\FileController;
@@ -79,6 +80,8 @@ Route::middleware('auth')->group(function () {
                 Route::post('evaluations', [EvaluationController::class, 'store'])->name('evaluations.store');
         
                 Route::post('videos/{videoId}/view', [VideoController::class, 'view'])->name('videos.view');
+
+                Route::get('certificate', [CertificateController::class, 'index'])->name('certificate');
             });
         });
 

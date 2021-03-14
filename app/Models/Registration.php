@@ -23,6 +23,11 @@ class Registration extends Model
         return $this->belongsTo(Course::class);
     }
 
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class);
+    }
+
     public function isConcluded(): bool
     {
         if ($this->calculateScore() < self::AVERAGE_SCORE_TO_PASS) {

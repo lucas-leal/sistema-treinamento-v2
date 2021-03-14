@@ -112,6 +112,12 @@ class InitialDatabase extends Migration
             $table->foreignUuid('course_id')->references('id')->on('courses');
             $table->timestamps();
         });
+
+        Schema::create('certificates', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('registration_id')->references('id')->on('registrations')->unique();
+            $table->timestamps();
+        });
     }
 
     /**

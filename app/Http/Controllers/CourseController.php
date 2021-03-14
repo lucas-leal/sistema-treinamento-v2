@@ -14,14 +14,16 @@ class CourseController extends Controller
         return view('course/index', ['courses' => $courses]);
     }
 
-    public function view(string $id)
+    public function view(Request $request, string $id)
     {
         $course = Course::findOrFail($id);
         $evaluations = $course->evaluations()->limit(3)->get();
+        $registration = $course->registrations()->where('user_id', $request->user()->id)->first();
 
         return view('course/view', [
             'course' => $course,
-            'evaluations' => $evaluations
+            'evaluations' => $evaluations,
+            'registration' => $registration,
         ]);
     }
 
