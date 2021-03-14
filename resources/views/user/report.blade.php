@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="mb-3">
-                <h3 class="d-inline">{{ __('User report') }}: {{ $user->name }}</h3>
+                <h3 class="d-inline">{{ __('User report') }}: <b>{{ $user->name }}</b></h3>
             </div>
             <table class="table table-hover">
                 <thead>
