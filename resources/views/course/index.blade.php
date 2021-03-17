@@ -15,6 +15,7 @@
                         <th>{{ __('Category') }}</th>
                         <th>{{ __('Instructor') }}</th>
                         <th>{{ __('Keywords') }}</th>
+                        <th>{{ __('Status') }}</th>
                         <th>{{ __('View') }}</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                             <td>{{ $course->category->name }}</td>
                             <td>{{ $course->instructor }}</td>
                             <td>{{ $course->keywords }}</td>
+                            <th>{{ __($course->status) }}</th>
                             <td><a href="{{ route('courses.view', ['id' => $course->id]) }}">{{ __('View') }}</a></td>
                         </tr>
                     @endforeach

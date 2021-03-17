@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
                 Route::get('activities/next', [ActivityController::class, 'next'])->name('activities.next');
                 Route::post('activities', [ActivityController::class, 'store'])->name('activities.store');
                 Route::get('activities/{activityId}', [ActivityController::class, 'view'])->name('activities.view');
+
+                Route::get('activate', [CourseController::class, 'activate'])->name('course.activate');
+                Route::get('inactivate', [CourseController::class, 'inactivate'])->name('course.inactivate');
             });
         });
     });

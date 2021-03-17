@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_INACTIVE = 'inactive';
+
     use HasFactory;
     use UuidTrait;
 
@@ -45,5 +48,10 @@ class Course extends Model
     public function registrations()
     {
         return $this->hasMany(Registration::class);
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::STATUS_ACTIVE;
     }
 }

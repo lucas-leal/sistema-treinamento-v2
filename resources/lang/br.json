@@ -61,5 +61,9 @@
     "Issue certificate": "Emitir certificado",
     "We certify that": "Certificamos que",
     "completed the course": "Completou o curso",
-    "Certificate": "Certificado"
+    "Certificate": "Certificado",
+    "active": "ativo",
+    "inactive": "inativo",
+    "Activate Course": "Ativar curso",
+    "Inactivate Course": "Desativar curso"
 }

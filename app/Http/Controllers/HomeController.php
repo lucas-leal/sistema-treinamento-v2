@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::where('status', Course::STATUS_ACTIVE)->get();
 
         return view('welcome', ['courses' => $courses]);
     }

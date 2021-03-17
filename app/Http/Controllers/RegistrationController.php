@@ -11,7 +11,11 @@ class RegistrationController extends Controller
 {
     public function subscribe(string $courseId, Request $request)
     {
-        $course = Course::findOrFail($courseId);
+        $course = Course::where('id', $courseId)
+            ->where('status', Course::STATUS_ACTIVE)
+            ->firstOrFail()
+        ;
+
         $user = $request->user();
 
         if ($user->alreadyRegistered($course)) {

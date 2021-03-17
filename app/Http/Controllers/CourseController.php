@@ -85,4 +85,22 @@ class CourseController extends Controller
 
         return view('course/concluded', ['courses' => $concluded]);
     }
+
+    public function activate(string $id)
+    {
+        $course = Course::findOrFail($id);
+        $course->status = Course::STATUS_ACTIVE;
+        $course->save();
+
+        return redirect(route('courses.view', ['id' => $id]));
+    }
+
+    public function inactivate(string $id)
+    {
+        $course = Course::findOrFail($id);
+        $course->status = Course::STATUS_INACTIVE;
+        $course->save();
+
+        return redirect(route('courses.view', ['id' => $id]));
+    }
 }

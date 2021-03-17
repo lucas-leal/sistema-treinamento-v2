@@ -7,6 +7,12 @@
                 <h3 class="d-inline">{{ $course->title }}</h3>
                 <div class="btn-group float-right">
                     @auth('admin')
+                        @if ($course->isActive())
+                            <a href="{{ route('course.inactivate', ['id' => $course->id]) }}" class="btn btn-secondary">{{ __('Inactivate Course') }}</a>
+                        @else
+                            <a href="{{ route('course.activate', ['id' => $course->id]) }}" class="btn btn-success">{{ __('Activate Course') }}</a>
+                        @endif
+                        &nbsp;&nbsp;
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ __('Add') }}
                         </button>
