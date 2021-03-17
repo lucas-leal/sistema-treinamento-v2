@@ -8,15 +8,15 @@ trait LoginTrait
     {
         $this->post('/login', [
             'login' => 'admin',
-            'password' => 'password'
+            'password' => 'abnt12'
         ]);
     }
 
     private function userLogin()
     {
         $this->post('/login', [
-            'login' => 'user',
-            'password' => 'password'
+            'login' => 'lucasleal',
+            'password' => 'abnt12'
         ]);
     }
 }

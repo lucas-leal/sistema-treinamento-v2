@@ -24,5 +24,15 @@ class UserSeeder extends Seeder
             'admin' => true,
             'email_verified_at' => now(),
         ]);
+
+        DB::table('users')->insert([
+            'id' => Uuid::uuid(),
+            'name' => 'Lucas Leal',
+            'email' => 'lucasleal@leal.com',
+            'login' => 'lucasleal',
+            'password' => '$2y$10$V7Yxnnqh02LD8Ot2rpWxL.IF8VoaGddseX0cNhh8bMjRkt4DtTzuG', // abnt12
+            'admin' => false,
+            'email_verified_at' => now(),
+        ]);
     }
 }
