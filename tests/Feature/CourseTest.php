@@ -29,4 +29,13 @@ class CourseTest extends TestCase
 
         $response->assertStatus(403);
     }
+
+    public function testViewNotFoundCourse()
+    {
+        $this->userLogin();
+        
+        $response = $this->get(self::URL.'/12345');
+        
+        $response->assertNotFound();
+    }
 }
