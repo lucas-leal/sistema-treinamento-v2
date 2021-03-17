@@ -20,18 +20,8 @@ class UserSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'administrator@administrator.com',
             'login' => 'admin',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$V7Yxnnqh02LD8Ot2rpWxL.IF8VoaGddseX0cNhh8bMjRkt4DtTzuG', // abnt12
             'admin' => true,
-            'email_verified_at' => now(),
-        ]);
-
-        DB::table('users')->insert([
-            'id' => Uuid::uuid(),
-            'name' => 'User',
-            'email' => 'user@user.com',
-            'login' => 'user',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'admin' => false,
             'email_verified_at' => now(),
         ]);
     }

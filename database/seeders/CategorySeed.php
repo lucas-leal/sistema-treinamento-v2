@@ -17,17 +17,22 @@ class CategorySeed extends Seeder
     {
         DB::table('categories')->insert([
             'id' => Uuid::uuid(),
-            'name' => 'Technology'
+            'name' => 'Tecnologia'
         ]);
 
         DB::table('categories')->insert([
             'id' => Uuid::uuid(),
-            'name' => 'Financial'
+            'name' => 'Finanças'
         ]);
 
         DB::table('categories')->insert([
             'id' => Uuid::uuid(),
-            'name' => 'Engineer'
+            'name' => 'Engenharia'
+        ]);
+
+        DB::table('categories')->insert([
+            'id' => Uuid::uuid(),
+            'name' => 'Recursos Humanos'
         ]);
     }
 }
