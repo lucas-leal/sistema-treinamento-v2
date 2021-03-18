@@ -58,6 +58,21 @@
         @yield('main')
 
     </main>
+
+    @if (session('message'))
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header">
+                <span class="rounded mr-2 {{ session('style') }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <strong class="mr-auto">Sistema de treinamento</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ __(session('message')) }}
+            </div>
+        </div>
+    @endif
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 </html>

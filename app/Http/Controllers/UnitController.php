@@ -29,6 +29,9 @@ class UnitController extends Controller
 
         $unit->save();
 
-        return redirect(route('courses.view', ['id' => $courseId]));
+        return redirect()
+            ->route('courses.view', ['id' => $courseId])
+            ->with(['message' => 'Unit created with success!', 'style' => 'bg-success'])
+        ;
     }
 }

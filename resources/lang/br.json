@@ -65,5 +65,15 @@
     "active": "ativo",
     "inactive": "inativo",
     "Activate Course": "Ativar curso",
-    "Inactivate Course": "Desativar curso"
+    "Inactivate Course": "Desativar curso",
+    "Course registered with success!": "Curso cadastrado com sucesso!",
+    "User registered with success!": "Usuário criado com sucesso!",
+    "Course activated with success!": "Curso ativado com sucesso!",
+    "Course inactivated with success!": "Curso inativado com sucesso!",
+    "Activity created with success!": "Atividade criada com sucesso!",
+    "Unit created with success!": "Unidade criada com sucesso!",
+    "Video created with success!": "Vídeo criado com sucesso!",
+    "File created with success!": "Arquivo criado com sucesso!",
+    "Registration created with success!": "Inscrição realizada com sucesso!",
+    "Course evaluated with success!": "Curso avaliado com sucesso!"
 }

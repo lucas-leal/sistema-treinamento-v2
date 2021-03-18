@@ -27,6 +27,9 @@ class RegistrationController extends Controller
         $registration->course()->associate($course);
         $registration->save();
 
-        return redirect(route('courses.view', ['id' => $course->id]));
+        return redirect()
+            ->route('courses.view', ['id' => $course->id])
+            ->with(['message' => 'Registration created with success!', 'style' => 'bg-success'])
+        ;
     }
 }

@@ -52,7 +52,10 @@ class ActivityController extends Controller
 
         $this->save($course, $request);
 
-        return redirect(route('courses.view', ['id' => $course->id]));
+        return redirect()
+            ->route('courses.view', ['id' => $course->id])
+            ->with(['message' => 'Activity created with success!', 'style' => 'bg-success'])
+        ;
     }
 
     private function validateQuestions(Request $request)

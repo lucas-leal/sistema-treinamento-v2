@@ -55,7 +55,9 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect('/courses');
+        return redirect('/courses')
+            ->with(['message' => 'Course registered with success!', 'style' => 'bg-success'])
+        ;
     }
 
     public function inProgress(Request $request)
@@ -92,7 +94,10 @@ class CourseController extends Controller
         $course->status = Course::STATUS_ACTIVE;
         $course->save();
 
-        return redirect(route('courses.view', ['id' => $id]));
+        return redirect()
+            ->route('courses.view', ['id' => $id])
+            ->with(['message' => 'Course activated with success!', 'style' => 'bg-success'])
+        ;
     }
 
     public function inactivate(string $id)
@@ -101,6 +106,9 @@ class CourseController extends Controller
         $course->status = Course::STATUS_INACTIVE;
         $course->save();
 
-        return redirect(route('courses.view', ['id' => $id]));
+        return redirect()
+            ->route('courses.view', ['id' => $id])
+            ->with(['message' => 'Course inactivated with success!', 'style' => 'bg-success'])
+        ;
     }
 }

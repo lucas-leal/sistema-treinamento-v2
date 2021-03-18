@@ -32,6 +32,9 @@ class EvaluationController extends Controller
         $evaluation->user()->associate($user);
         $evaluation->save();
 
-        return redirect(route('courses.view', ['id' => $course->id]));
+        return redirect()
+            ->route('courses.view', ['id' => $course->id])
+            ->with(['message' => 'Course evaluated with success!', 'style' => 'bg-success'])
+        ;
     }
 }

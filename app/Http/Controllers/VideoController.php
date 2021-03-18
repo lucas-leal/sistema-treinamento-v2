@@ -43,7 +43,10 @@ class VideoController extends Controller
 
         $request->file('file')->storeAs($path, $storageName);
 
-        return redirect(route('courses.view', ['id' => $courseId]));
+        return redirect()
+            ->route('courses.view', ['id' => $courseId])
+            ->with(['message' => 'Video created with success!', 'style' => 'bg-success'])
+        ;
     }
 
     public function get(string $courseId, string $videoId)

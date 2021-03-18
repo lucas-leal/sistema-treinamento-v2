@@ -18,3 +18,10 @@
 #video-modal .modal-dialog{
     max-height: 90%;
 }
+
+.toast {
+    position: absolute; 
+    top: 70px; 
+    right: 10px;
+    background-color: rgba(255, 255, 255, 1);
+}

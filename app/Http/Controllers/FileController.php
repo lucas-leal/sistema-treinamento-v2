@@ -41,7 +41,10 @@ class FileController extends Controller
 
         $request->file('file')->storeAs($path, $storageName);
 
-        return redirect(route('courses.view', ['id' => $unit->course->id]));
+        return redirect()
+            ->route('courses.view', ['id' => $unit->course->id])
+            ->with(['message' => 'File created with success!', 'style' => 'bg-success'])
+        ;
     }
 
     public function get(string $courseId, string $fileId)

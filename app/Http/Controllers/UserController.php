@@ -37,7 +37,9 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/users');
+        return redirect('/users')
+            ->with(['message' => 'User registered with success!', 'style' => 'bg-success'])
+        ;
     }
 
     public function report(string $id)
