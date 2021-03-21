@@ -48,6 +48,16 @@ class ActivityController extends Controller
 
         $this->validateQuestions($request);
 
+        if (!$this->isCorrectOptionsValid($request)) {
+            return back()
+                ->withInput()
+                ->with([
+                    'message' => 'Inform the correct option in each question.',
+                    'style' => 'bg-warning'
+                ])
+            ;
+        }
+
         $course = Course::findOrFail($courseId);
 
         $this->save($course, $request);
@@ -64,7 +74,6 @@ class ActivityController extends Controller
 
         for ($question = 1; $question <= $request->questions; $question++) {
             $validationRules["question-$question"] = 'required';
-            $validationRules["correct-option-$question"] = 'required';
 
             for ($option = 1; $option <= Activity::NUMBER_OPTIONS; $option++) {
                 $validationRules["option-$question-$option"] = 'required';
@@ -72,6 +81,17 @@ class ActivityController extends Controller
         }
 
         $request->validate($validationRules);
+    }
+
+    private function isCorrectOptionsValid(Request $request): bool
+    {
+        for ($question = 1; $question <= $request->questions; $question++) {
+            if ($request->isNotFilled("correct-option-$question")) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private function save(Course $course, Request $request)

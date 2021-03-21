@@ -85,7 +85,7 @@ return [
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => 'Este campo deve ser no mínimo :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'string' => 'Este campo deve conter no mínimo :min caracteres.',
         'array' => 'The :attribute must have at least :min items.',
@@ -114,7 +114,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'O :attribute já existe.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -147,6 +147,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email' => 'e-mail',
+        'login' => 'usuário'
+    ],
 
 ];
